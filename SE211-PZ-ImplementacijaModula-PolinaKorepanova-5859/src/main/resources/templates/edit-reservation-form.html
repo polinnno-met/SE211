@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Reservation</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+</head>
+<body>
+<h1>Edit Reservation</h1>
+<form th:action="@{/update-reservation}" th:object="${reservation}" method="post">
+    <input type="hidden" th:field="*{id}" />
+    <div>
+        <label>Room:</label>
+        <span th:text="${reservation.room.number} + ' - ' + ${reservation.room.type}"></span>
+    </div>
+    <div>
+        <label>Guest:</label>
+        <span th:text="${reservation.guest.name}"></span>
+    </div>
+    <div>
+        <label for="checkInDate">Check-In Date:</label>
+        <input type="datetime-local" th:field="*{checkInDate}" id="checkInDate"  required />
+    </div>
+    <div>
+        <label for="checkOutDate">Check-Out Date:</label>
+        <input type="datetime-local" th:field="*{checkOutDate}" id="checkOutDate" name="checkOutDate" required />
+
+    </div>
+    <div>
+        <button type="submit" class="btn btn-success btn-sm">Update</button>
+    </div>
+</form>
+</body>
+</html>

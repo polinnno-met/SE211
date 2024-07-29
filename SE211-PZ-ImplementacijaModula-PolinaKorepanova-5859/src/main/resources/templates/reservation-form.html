@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Reservation Form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+</head>
+<body>
+<div class="container">
+
+<h1>Reserve Room <span th:text="${room.number}">Room Number</span> at <span th:text="${room.hotel.name}">Hotel Name</span></h1>
+<form action="#" th:action="@{/reserve}" method="post">
+    <input type="hidden" name="roomId" th:value="${room.id}" />
+    <input type="hidden" name="guestId" th:value="${guest.id}" />
+
+    <div>
+        <label for="checkInDate">Check-in Date:</label>
+        <input type="datetime-local" id="checkInDate" name="checkInDate" required>
+    </div>
+    <div>
+        <label for="checkOutDate">Check-out Date:</label>
+        <input type="datetime-local" id="checkOutDate" name="checkOutDate" required>
+    </div>
+    <button type="submit" class="btn btn-success">Reserve</button>
+</form>
+</div>
+</body>
+</html>

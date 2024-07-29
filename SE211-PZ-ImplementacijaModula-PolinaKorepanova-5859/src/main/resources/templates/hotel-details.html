@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Hotel Details</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+</head>
+<body>
+<div class="container">
+
+<h1>Hotel Details</h1>
+<h2 th:text="${hotel.name}">Hotel Name</h2>
+<p>Address: <span th:text="${hotel.location}">Hotel Address</span></p>
+<p>Rating: <span th:text="${hotel.rating}">Hotel Rating</span></p>
+
+<h3>Rooms</h3>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Room Number</th>
+        <th>Type</th>
+        <th>Price</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="room : ${rooms}">
+        <td th:text="${room.number}">Room Number</td>
+        <td th:text="${room.type}">Room Type</td>
+        <td th:text="${room.price}">Room Price</td>
+        <td>
+            <a th:href="@{/reserve/{roomId}(roomId=${room.id})}">Reserve</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</div>
+</body>
+</html>

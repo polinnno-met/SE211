@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Reservation Confirmation</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1>Reservation Confirmation</h1>
+    <p>Thank you, <span th:text="${reservation.guest.name}">Guest Name</span>, for your reservation.</p>
+    <p>Room <span th:text="${reservation.room.number}">Room Number</span> at <span th:text="${reservation.room.hotel.name}">Hotel Name</span> has been reserved for you.</p>
+    <p>Check-in Date: <span th:text="${#temporals.format(reservation.checkInDate, 'yyyy-MM-dd HH:mm')}">Check-in Date</span></p>
+    <p>Check-out Date: <span th:text="${#temporals.format(reservation.checkOutDate, 'yyyy-MM-dd HH:mm')}">Check-out Date</span></p>
+    <a th:href="@{/reservations}" class="btn btn-primary">Go to Reservations</a>
+</div>
+</body>
+</html>

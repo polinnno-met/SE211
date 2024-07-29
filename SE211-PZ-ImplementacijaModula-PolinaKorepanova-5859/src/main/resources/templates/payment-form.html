@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Payment</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+</head>
+<body>
+<h1>Payment for Reservation</h1>
+<div>
+    <p>Reservation ID: <span th:text="${reservation.id}"></span></p>
+    <p>Room: <span th:text="${reservation.room.number} + ' (' + ${reservation.room.type} + ')'"></span></p>
+    <p>Check-In Date: <span th:text="${#temporals.format(reservation.checkInDate, 'yyyy-MM-dd HH:mm')}"></span></p>
+    <p>Check-Out Date: <span th:text="${#temporals.format(reservation.checkOutDate, 'yyyy-MM-dd HH:mm')}"></span></p>
+    <p>Total Price: <span th:text="${amount}"></span></p>
+</div>
+<form th:action="@{/pay-reservation}" method="post">
+    <input type="hidden" name="reservationId" th:value="${reservation.id}" />
+    <div>
+        <label for="paymentMethod">Payment Method:</label>
+        <select name="method" id="paymentMethod" required>
+            <option value="Card">Card</option>
+            <option value="PayPal">PayPal</option>
+            <option value="BankTransfer">Bank Transfer</option>
+        </select>
+    </div>
+    <div>
+        <label for="amount">Amount:</label>
+        <input type="number" name="amount" id="amount" th:value="${amount}" disabled />
+    </div>
+    <div>
+        <button type="submit" class="btn btn-success btn-sm">Pay</button>
+    </div>
+</form>
+</body>
+</html>
